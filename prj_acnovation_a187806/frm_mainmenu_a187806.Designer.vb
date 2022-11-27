@@ -28,13 +28,13 @@ Partial Class frm_mainmenu_a187806
         Me.btn_order = New System.Windows.Forms.Button()
         Me.btn_customer = New System.Windows.Forms.Button()
         Me.btn_staff = New System.Windows.Forms.Button()
-        Me.pic_github = New System.Windows.Forms.PictureBox()
-        Me.pic_logo = New System.Windows.Forms.PictureBox()
         Me.lnk_github = New System.Windows.Forms.LinkLabel()
         Me.pnl_githublink = New System.Windows.Forms.Panel()
+        Me.pic_github = New System.Windows.Forms.PictureBox()
+        Me.pic_logo = New System.Windows.Forms.PictureBox()
+        Me.pnl_githublink.SuspendLayout()
         CType(Me.pic_github, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pic_logo, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pnl_githublink.SuspendLayout()
         Me.SuspendLayout()
         '
         'lbl_title
@@ -89,13 +89,38 @@ Partial Class frm_mainmenu_a187806
         Me.btn_staff.Text = "Staffs"
         Me.btn_staff.UseVisualStyleBackColor = True
         '
+        'lnk_github
+        '
+        Me.lnk_github.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lnk_github.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lnk_github.Location = New System.Drawing.Point(26, 0)
+        Me.lnk_github.Name = "lnk_github"
+        Me.lnk_github.Size = New System.Drawing.Size(113, 28)
+        Me.lnk_github.TabIndex = 8
+        Me.lnk_github.TabStop = True
+        Me.lnk_github.Tag = "https://stackoverflow.com/questions/10786835/how-to-set-controls-on-center-of-the" &
+    "-winform"
+        Me.lnk_github.Text = "Repository Link"
+        Me.lnk_github.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lnk_github.UseWaitCursor = True
+        '
+        'pnl_githublink
+        '
+        Me.pnl_githublink.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.pnl_githublink.Controls.Add(Me.lnk_github)
+        Me.pnl_githublink.Controls.Add(Me.pic_github)
+        Me.pnl_githublink.Location = New System.Drawing.Point(12, 410)
+        Me.pnl_githublink.Name = "pnl_githublink"
+        Me.pnl_githublink.Size = New System.Drawing.Size(139, 28)
+        Me.pnl_githublink.TabIndex = 9
+        '
         'pic_github
         '
         Me.pic_github.Dock = System.Windows.Forms.DockStyle.Left
         Me.pic_github.Image = Global.prj_acnovation_a187806.My.Resources.Resources.github
         Me.pic_github.Location = New System.Drawing.Point(0, 0)
         Me.pic_github.Name = "pic_github"
-        Me.pic_github.Size = New System.Drawing.Size(26, 44)
+        Me.pic_github.Size = New System.Drawing.Size(26, 28)
         Me.pic_github.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pic_github.TabIndex = 7
         Me.pic_github.TabStop = False
@@ -110,31 +135,6 @@ Partial Class frm_mainmenu_a187806
         Me.pic_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pic_logo.TabIndex = 2
         Me.pic_logo.TabStop = False
-        '
-        'lnk_github
-        '
-        Me.lnk_github.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lnk_github.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.lnk_github.Location = New System.Drawing.Point(26, 0)
-        Me.lnk_github.Name = "lnk_github"
-        Me.lnk_github.Size = New System.Drawing.Size(113, 44)
-        Me.lnk_github.TabIndex = 8
-        Me.lnk_github.TabStop = True
-        Me.lnk_github.Tag = "https://stackoverflow.com/questions/10786835/how-to-set-controls-on-center-of-the" &
-    "-winform"
-        Me.lnk_github.Text = "Repository Link"
-        Me.lnk_github.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.lnk_github.UseWaitCursor = True
-        '
-        'pnl_githublink
-        '
-        Me.pnl_githublink.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.pnl_githublink.Controls.Add(Me.lnk_github)
-        Me.pnl_githublink.Controls.Add(Me.pic_github)
-        Me.pnl_githublink.Location = New System.Drawing.Point(12, 394)
-        Me.pnl_githublink.Name = "pnl_githublink"
-        Me.pnl_githublink.Size = New System.Drawing.Size(139, 44)
-        Me.pnl_githublink.TabIndex = 9
         '
         'frm_mainmenu_a187806
         '
@@ -151,9 +151,9 @@ Partial Class frm_mainmenu_a187806
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frm_mainmenu_a187806"
         Me.Text = "Acnovation"
+        Me.pnl_githublink.ResumeLayout(False)
         CType(Me.pic_github, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pic_logo, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pnl_githublink.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

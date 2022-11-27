@@ -406,8 +406,10 @@
     <None Include="Resources\_9.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\github.bmp" />
     <None Include="README.md" />
     <None Include="images\github.png" />
+    <None Include="bin\Debug\images\github.png" />
     <Content Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
