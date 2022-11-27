@@ -1,8 +1,6 @@
 ﻿Imports System.ComponentModel
 
 Public Class frm_mainmenu_a187806
-    Const GITHUB_LINK = "https://github.com/Polar8ear/advanced-db-assignment-1-aircraft-acnovation"
-
     ' Currently I'm using a general tableView template form for all the tables, but I have also
     ' created individual forms just in case there are customisation for each of them
     Dim productsForm As New frm_tableView_a187806("Products", "SELECT * FROM TBL_PRODUCTS_A187806")
