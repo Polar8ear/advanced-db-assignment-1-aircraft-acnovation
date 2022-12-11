@@ -21,4 +21,8 @@
         Hide()
         frm_mainmenu_a187806.Show()
     End Sub
+
+    Private Sub frm_tableView_a187806_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        End
+    End Sub
 End Class
