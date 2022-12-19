@@ -158,9 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -295,121 +295,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_10.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_11.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_12.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_13.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_14.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_15.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_17.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_18.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_19.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_20.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_21.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_22.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_26.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_27.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_28.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_29.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_30.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_31.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_32.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_33.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_34.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_35.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_37.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_38.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_39.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_40.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_5.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_6.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_7.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_8.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_9.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="README.md" />
     <None Include="images\github.png" />
     <None Include="bin\Debug\images\github.png" />
     <Content Include="logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
