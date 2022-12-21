@@ -13,7 +13,7 @@
     Private Sub frm_tableView_a187806_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lbl_title.Text = title
 
-        Dim dataTable = ExecuteSqlAndRetrieveDatatable(sqlStatement)
+        Dim dataTable = GetDataTableFromSelectStatment(sqlStatement)
         grd_table.DataSource = dataTable
     End Sub
 
