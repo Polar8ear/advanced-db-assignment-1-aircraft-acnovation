@@ -9,4 +9,20 @@
         Return datatable
     End Function
 
+    Public Function ExecuteSqlStatement(ByVal sqlStatement As String) As Boolean
+        Dim writer As New OleDb.OleDbCommand(sqlStatement, dbConnection)
+
+        Try
+            writer.Connection.Open()
+            writer.ExecuteNonQuery()
+
+        Catch ex As ArgumentException
+            Return False
+        Finally
+
+            writer.Connection.Close()
+        End Try
+
+        Return True
+    End Function
 End Module
