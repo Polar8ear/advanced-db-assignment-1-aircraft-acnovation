@@ -28,9 +28,14 @@ Partial Class frm_tableView_a187806
         '
         'grd_table
         '
+        Me.grd_table.AllowUserToAddRows = False
+        Me.grd_table.AllowUserToDeleteRows = False
+        Me.grd_table.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
         Me.grd_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.grd_table.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.grd_table.Location = New System.Drawing.Point(41, 74)
         Me.grd_table.Name = "grd_table"
+        Me.grd_table.ReadOnly = True
         Me.grd_table.RowHeadersWidth = 51
         Me.grd_table.Size = New System.Drawing.Size(719, 345)
         Me.grd_table.TabIndex = 1
