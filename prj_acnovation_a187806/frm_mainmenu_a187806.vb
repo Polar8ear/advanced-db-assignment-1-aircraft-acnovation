@@ -34,7 +34,7 @@ Public Class frm_mainmenu_a187806
             FLD_NAME AS [Name]  
         FROM TBL_STAFFS_A187806")
     Private Sub btn_products_Click(sender As Object, e As EventArgs) Handles btn_products.Click
-        productsForm.Show()
+        frm_products_a187806.Show()
         Hide()
     End Sub
     Private Sub btn_order_Click(sender As Object, e As EventArgs) Handles btn_order.Click
