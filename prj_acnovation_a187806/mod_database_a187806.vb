@@ -1,5 +1,5 @@
 ﻿Module mod_database_a187806
-    Private Const dbConnectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=../../data/DB_ACNOVATION_A187806.accdb;Persist Security Info=False;"
+    Private Const dbConnectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=./data/DB_ACNOVATION_A187806.accdb;Persist Security Info=False;"
     Private dbConnection As New OleDb.OleDbConnection(dbConnectionString)
     Class SuccessState
         Public ReadOnly success As Boolean
