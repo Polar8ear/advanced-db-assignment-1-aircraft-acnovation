@@ -1,8 +1,6 @@
 ﻿Imports System.ComponentModel
 
 Public Class frm_mainmenu_a187806
-    ' Currently I'm using a general tableView template form for all the tables, but I have also
-    ' created individual forms just in case there are customisation for each of them
     Dim ordersForm As New frm_tableView_a187806("Orders",
         "SELECT  
             FLD_ORDER_ID AS [ID],  

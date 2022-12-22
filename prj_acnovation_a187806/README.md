@@ -6,12 +6,11 @@ This is a database application made for the course TTTU2983 Advanced Database. T
 
 ## Forms
 
-The two main forms are
-- frm_mainscreen_a187806
-- frm_tableView_a187806
+### frm_base_a187806
 
-where the latter is a general form where its instance is made to display data from different tables using different SQL statements. [More details here](./frm_mainmenu_a187806.vb).
+A form for other forms to inherit from to get a similar layouts
 
-## Database and Images
+### frm_mainmenu_a187806
 
-These two components are being placed in `data/` and `images/` respectively but I have also added duplicate in `bin/debug` for inspection.
+A form to access other form
+
