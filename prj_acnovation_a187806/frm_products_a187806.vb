@@ -25,8 +25,9 @@ Public Class frm_products_a187806
             AddHandler textBoxFields(index).textBox.TextChanged, AddressOf HandleDataChanged
         Next index
 
-        AddHandler txt_price.TextChanged, AddressOf ValidateIntegerTextBoxChanged
-        AddHandler txt_stock.TextChanged, AddressOf ValidateIntegerTextBoxChanged
+        'Explicitlty set the handler after enabling save to toggle btn_save enabled if doesnt pass test
+        AddHandler txt_price.TextChanged, AddressOf ValidateNumberTextBox
+        AddHandler txt_stock.TextChanged, AddressOf ValidateIntegerTextBox
     End Sub
     Private Sub lst_productIds_SelectedIndexChanged(sender As Object, e As EventArgs)
         Dim selected As DataRowView = lst_productIds.SelectedItem
@@ -60,9 +61,19 @@ Public Class frm_products_a187806
         newImageText = Nothing
     End Sub
 
-    Private Sub ValidateIntegerTextBoxChanged(sender As TextBox, e As EventArgs)
+    Private Sub ValidateIntegerTextBox(sender As TextBox, e As EventArgs)
         If Not Regex.IsMatch(sender.Text, isIntegerRegex) Then
             errorProvider.SetError(sender, "Please insert a valid integer")
+            btn_save.Enabled = False
+
+        Else
+            errorProvider.Clear()
+        End If
+    End Sub
+
+    Private Sub ValidateNumberTextBox(sender As TextBox, e As EventArgs)
+        If Not Regex.IsMatch(sender.Text, isNumberRegex) Then
+            errorProvider.SetError(sender, "Please insert a valid number")
             btn_save.Enabled = False
 
         Else
@@ -127,8 +138,8 @@ Public Class frm_products_a187806
     End Sub
 
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
-        If Not Regex.IsMatch(txt_price.Text, isIntegerRegex) Then
-            MsgBox("Please enter a valid integer for price.")
+        If Not Regex.IsMatch(txt_price.Text, isNumberRegex) Then
+            MsgBox("Please enter a valid number for price.")
             Exit Sub
         End If
 
