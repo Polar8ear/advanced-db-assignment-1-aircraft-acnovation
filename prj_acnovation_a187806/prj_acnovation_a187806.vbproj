@@ -87,6 +87,12 @@
     <Compile Include="frm_base_a187806.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frm_customers_a187806.Designer.vb">
+      <DependentUpon>frm_customers_a187806.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_customers_a187806.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frm_mainmenu_a187806.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -129,15 +135,20 @@
     <EmbeddedResource Include="frm_base_a187806.resx">
       <DependentUpon>frm_base_a187806.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_customers_a187806.resx">
+      <DependentUpon>frm_customers_a187806.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_mainmenu_a187806.resx">
       <DependentUpon>frm_mainmenu_a187806.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_products_a187806.resx">
       <DependentUpon>frm_products_a187806.vb</DependentUpon>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_tableView_a187806.resx">
       <DependentUpon>frm_tableView_a187806.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -278,6 +289,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\homeIcon.png" />
     <None Include="Resources\icon.ico" />
     <None Include="Resources\icon.bmp" />
     <None Include="README.md" />
