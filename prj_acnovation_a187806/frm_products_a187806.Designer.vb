@@ -279,6 +279,7 @@ Partial Class frm_products_a187806
         '
         'errorProvider
         '
+        Me.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.errorProvider.ContainerControl = Me
         '
         'frm_products_a187806

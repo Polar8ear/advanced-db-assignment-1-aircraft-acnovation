@@ -153,10 +153,11 @@ Public Class frm_products_a187806
             Exit Sub
         End If
 
+        Dim state As SuccessState
+
         'Handles new record creation
         If txt_id.Text = getNewId() Then
-            Dim prevId = txt_id.Text
-            ExecuteSqlStatement($"INSERT INTO TBL_PRODUCTS_A187806 (
+            state = ExecuteSqlStatement($"INSERT INTO TBL_PRODUCTS_A187806 (
                     FLD_PRODUCT_ID, 
                     FLD_PRODUCT_NAME, 
                     FLD_PRICE, 
@@ -174,8 +175,10 @@ Public Class frm_products_a187806
                     '{txt_description.Text}'
                 )
             ")
+
+            If state.success Then refreshIds()
         Else
-            ExecuteSqlStatement($"UPDATE TBL_PRODUCTS_A187806 SET
+            state = ExecuteSqlStatement($"UPDATE TBL_PRODUCTS_A187806 SET
                     FLD_PRODUCT_NAME = '{txt_name.Text}', 
                     FLD_PRICE = {txt_price.Text},
                     FLD_STOCK = {txt_stock.Text}, 
@@ -184,6 +187,14 @@ Public Class frm_products_a187806
                     FLD_DESCRIPTION = '{txt_description.Text}'
                 WHERE FLD_PRODUCT_ID = {txt_id.Text}
             ")
+        End If
+
+        If state.success Then
+            Beep()
+            MsgBox("Succesfully saved.")
+        Else
+            MsgBox($"Saving failed due to: {vbCrLf}{vbCrLf}{state.exception.Message}")
+            Exit Sub
         End If
 
         Dim isNewImageTextExists = newImageText IsNot Nothing And newImageText?.Length > 0
@@ -202,6 +213,11 @@ Public Class frm_products_a187806
     End Sub
 
     Private Sub btn_delete_Click(sender As Object, e As EventArgs) Handles btn_delete.Click
+        If txt_id.Text = getNewId() Then
+            MsgBox("You can't delete a non-existent record")
+            Exit Sub
+        End If
+
         Dim delete_confirmation = MsgBox($"Are you sure you want to delete product of ID {txt_id.Text}",
                                          MsgBoxStyle.YesNo)
 
@@ -213,7 +229,11 @@ Public Class frm_products_a187806
             MsgBox($"The product of ID {txt_id.Text} has been successfully deleted.")
 
             currentImage.Dispose()
-            My.Computer.FileSystem.DeleteFile($"./images/{txt_id.Text}.jpg")
+
+            Dim filePath = $"./images/{txt_id.Text}.jpg"
+            If My.Computer.FileSystem.FileExists(filePath) Then
+                My.Computer.FileSystem.DeleteFile(filePath)
+            End If
 
 
             refreshIds()
