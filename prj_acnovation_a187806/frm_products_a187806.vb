@@ -1,6 +1,7 @@
 ﻿Imports System.Text.RegularExpressions
 
 Public Class frm_products_a187806
+    Dim frm_productsTable_a187806 As frm_tableView_a187806
     Dim textBoxFields() As TextBoxField
     Dim newImageText As String
     Dim currentImage As Image
@@ -106,6 +107,23 @@ Public Class frm_products_a187806
         btn_save.Enabled = True
     End Sub
 
+    Private Sub btn_table_Click(sender As Object, e As EventArgs) Handles btn_table.Click
+        If frm_productsTable_a187806 Is Nothing Then
+            frm_productsTable_a187806 = New frm_tableView_a187806("Products",
+               "SELECT 
+                    FLD_PRODUCT_ID AS [ID], 
+                    FLD_PRODUCT_NAME AS [Product Name], 
+                    FORMAT(FLD_PRICE, '.00') AS [Price (Sen)], 
+                    FLD_TYPE AS [Type], 
+                    FLD_CONDITION AS [Condition], 
+                    FLD_DESCRIPTION AS [Description], 
+                    FLD_STOCK AS [Stock] 
+                FROM TBL_PRODUCTS_A187806"
+            )
+        End If
+
+        frm_productsTable_a187806.Show()
+        Hide()
     End Sub
 
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
