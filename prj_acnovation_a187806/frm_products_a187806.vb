@@ -227,19 +227,20 @@ Public Class frm_products_a187806
             Dim state = ExecuteSqlStatement($"DELETE FROM TBL_PRODUCTS_A187806 WHERE FLD_PRODUCT_ID = {txt_id.Text}")
 
 
-            If state.success Then
-                MsgBox($"The product of ID {txt_id.Text} has been successfully deleted.")
-                refreshIds()
-                currentImage.Dispose()
-            Else
+            If Not state.success Then
                 MsgBox($"Delete failed. {vbCrLf}{vbCrLf}{state.exception.Message}")
                 Exit Sub
             End If
+
+            MsgBox($"The product of ID {txt_id.Text} has been successfully deleted.")
+            clearImage()
 
             Dim filePath = $"./images/{txt_id.Text}.jpg"
             If My.Computer.FileSystem.FileExists(filePath) Then
                 My.Computer.FileSystem.DeleteFile(filePath)
             End If
+
+            refreshIds()
         End If
     End Sub
 
