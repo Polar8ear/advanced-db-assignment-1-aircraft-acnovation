@@ -150,6 +150,7 @@ Partial Class frm_mainmenu_a187806
         Me.Controls.Add(Me.lbl_title)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frm_mainmenu_a187806"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Acnovation"
         Me.pnl_githublink.ResumeLayout(False)
         CType(Me.pic_github, System.ComponentModel.ISupportInitialize).EndInit()
