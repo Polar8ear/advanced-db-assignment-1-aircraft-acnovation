@@ -106,6 +106,12 @@
     <Compile Include="frm_products_a187806.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frm_staffs_a187806.Designer.vb">
+      <DependentUpon>frm_staffs_a187806.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_staffs_a187806.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frm_tableView_a187806.Designer.vb">
       <DependentUpon>frm_tableView_a187806.vb</DependentUpon>
     </Compile>
@@ -145,6 +151,9 @@
       <DependentUpon>frm_products_a187806.vb</DependentUpon>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_staffs_a187806.resx">
+      <DependentUpon>frm_staffs_a187806.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_tableView_a187806.resx">
       <DependentUpon>frm_tableView_a187806.vb</DependentUpon>

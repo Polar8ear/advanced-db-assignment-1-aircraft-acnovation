@@ -10,18 +10,6 @@ Public Class frm_mainmenu_a187806
             FLD_ORDERED_BY_CUSTOMER_ID AS [Customer ID]  
         FROM TBL_ORDERS_A187806")
 
-    Dim customersForm As New frm_tableView_a187806("Customers",
-        "SELECT  
-            FLD_CUSTOMER_ID AS [ID],  
-            FLD_NAME AS [Name],  
-            FLD_CONTACT_NUMBER AS [Contact Number]  
-        FROM TBL_CUSTOMERS_A187806"
-    )
-    Dim staffsForm As New frm_tableView_a187806("Staffs",
-        "SELECT  
-            FLD_STAFF_ID AS [ID],  
-            FLD_NAME AS [Name]  
-        FROM TBL_STAFFS_A187806")
     Private Sub btn_products_Click(sender As Object, e As EventArgs) Handles btn_products.Click
         frm_products_a187806.Show()
         Hide()
@@ -33,12 +21,12 @@ Public Class frm_mainmenu_a187806
 
 
     Private Sub btn_customer_Click(sender As Object, e As EventArgs) Handles btn_customer.Click
-        customersForm.Show()
+        frm_customers_a187806.Show()
         Hide()
     End Sub
 
     Private Sub btn_staff_Click(sender As Object, e As EventArgs) Handles btn_staff.Click
-        staffsForm.Show()
+        frm_staffs_a187806.Show()
         Hide()
     End Sub
 
