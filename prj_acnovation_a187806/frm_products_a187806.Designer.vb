@@ -46,12 +46,10 @@ Partial Class frm_products_a187806
         Me.btn_selectPicture = New System.Windows.Forms.Button()
         Me.btn_clearPicture = New System.Windows.Forms.Button()
         Me.errorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.pic_home, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pic_product, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.errorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lst_productIds
@@ -283,10 +281,6 @@ Partial Class frm_products_a187806
         '
         Me.errorProvider.ContainerControl = Me
         '
-        'ErrorProvider1
-        '
-        Me.ErrorProvider1.ContainerControl = Me
-        '
         'frm_products_a187806
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -339,7 +333,6 @@ Partial Class frm_products_a187806
         CType(Me.pic_product, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.errorProvider, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -369,6 +362,5 @@ Partial Class frm_products_a187806
     Friend WithEvents btn_selectPicture As Button
     Friend WithEvents btn_clearPicture As Button
     Friend WithEvents errorProvider As ErrorProvider
-    Friend WithEvents ErrorProvider1 As ErrorProvider
     Friend WithEvents btn_table As Button
 End Class
