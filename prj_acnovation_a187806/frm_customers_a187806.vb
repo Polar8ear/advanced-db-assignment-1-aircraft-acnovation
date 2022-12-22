@@ -96,11 +96,16 @@ Public Class frm_customers_a187806
         If delete_confirmation = MsgBoxResult.Yes Then
             Beep()
 
-            ExecuteSqlStatement($"DELETE FROM TBL_CUSTOMERS_A187806 WHERE FLD_CUSTOMER_ID = {txt_id.Text}")
+            Dim state = ExecuteSqlStatement($"DELETE FROM TBL_CUSTOMERS_A187806 WHERE FLD_CUSTOMER_ID = {txt_id.Text}")
 
-            MsgBox($"The product of ID {txt_id.Text} has been successfully deleted.")
 
-            refreshIds()
+
+            If state.success Then
+                MsgBox($"The customer of ID {txt_id.Text} has been successfully deleted.")
+                refreshIds()
+            Else
+                MsgBox($"Delete failed. {vbCrLf}{vbCrLf}{state.exception.Message}")
+            End If
         End If
     End Sub
 

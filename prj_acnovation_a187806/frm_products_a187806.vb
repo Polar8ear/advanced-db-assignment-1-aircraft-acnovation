@@ -224,19 +224,22 @@ Public Class frm_products_a187806
         If delete_confirmation = MsgBoxResult.Yes Then
             Beep()
 
-            ExecuteSqlStatement($"DELETE FROM TBL_PRODUCTS_A187806 WHERE FLD_PRODUCT_ID = {txt_id.Text}")
+            Dim state = ExecuteSqlStatement($"DELETE FROM TBL_PRODUCTS_A187806 WHERE FLD_PRODUCT_ID = {txt_id.Text}")
 
-            MsgBox($"The product of ID {txt_id.Text} has been successfully deleted.")
 
-            currentImage.Dispose()
+            If state.success Then
+                MsgBox($"The product of ID {txt_id.Text} has been successfully deleted.")
+                refreshIds()
+                currentImage.Dispose()
+            Else
+                MsgBox($"Delete failed. {vbCrLf}{vbCrLf}{state.exception.Message}")
+                Exit Sub
+            End If
 
             Dim filePath = $"./images/{txt_id.Text}.jpg"
             If My.Computer.FileSystem.FileExists(filePath) Then
                 My.Computer.FileSystem.DeleteFile(filePath)
             End If
-
-
-            refreshIds()
         End If
     End Sub
 
