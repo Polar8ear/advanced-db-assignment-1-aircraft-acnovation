@@ -22,7 +22,19 @@ Partial Class frm_base_a187806
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.pic_home = New System.Windows.Forms.PictureBox()
+        CType(Me.pic_home, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'pic_home
+        '
+        Me.pic_home.Image = Global.prj_acnovation_a187806.My.Resources.Resources.homeIcon
+        Me.pic_home.Location = New System.Drawing.Point(41, 26)
+        Me.pic_home.Name = "pic_home"
+        Me.pic_home.Size = New System.Drawing.Size(49, 42)
+        Me.pic_home.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pic_home.TabIndex = 0
+        Me.pic_home.TabStop = False
         '
         'frm_base_a187806
         '
@@ -30,9 +42,14 @@ Partial Class frm_base_a187806
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.pic_home)
         Me.Name = "frm_base_a187806"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frm_base_a187806"
+        CType(Me.pic_home, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
+
+    Public WithEvents pic_home As PictureBox
 End Class
