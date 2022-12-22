@@ -32,6 +32,7 @@ Partial Class frm_mainmenu_a187806
         Me.pnl_githublink = New System.Windows.Forms.Panel()
         Me.pic_github = New System.Windows.Forms.PictureBox()
         Me.pic_logo = New System.Windows.Forms.PictureBox()
+        Me.lbl_catchPhrase = New System.Windows.Forms.Label()
         Me.pnl_githublink.SuspendLayout()
         CType(Me.pic_github, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pic_logo, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,7 +128,7 @@ Partial Class frm_mainmenu_a187806
         '
         'pic_logo
         '
-        Me.pic_logo.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.pic_logo.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.pic_logo.Image = Global.prj_acnovation_a187806.My.Resources.Resources.logo
         Me.pic_logo.Location = New System.Drawing.Point(340, 100)
         Me.pic_logo.Name = "pic_logo"
@@ -136,11 +137,23 @@ Partial Class frm_mainmenu_a187806
         Me.pic_logo.TabIndex = 2
         Me.pic_logo.TabStop = False
         '
+        'lbl_catchPhrase
+        '
+        Me.lbl_catchPhrase.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lbl_catchPhrase.AutoSize = True
+        Me.lbl_catchPhrase.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_catchPhrase.Location = New System.Drawing.Point(267, 244)
+        Me.lbl_catchPhrase.Name = "lbl_catchPhrase"
+        Me.lbl_catchPhrase.Size = New System.Drawing.Size(266, 20)
+        Me.lbl_catchPhrase.TabIndex = 10
+        Me.lbl_catchPhrase.Text = "The sky's the limit with Acnovation"
+        '
         'frm_mainmenu_a187806
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.lbl_catchPhrase)
         Me.Controls.Add(Me.pnl_githublink)
         Me.Controls.Add(Me.btn_staff)
         Me.Controls.Add(Me.btn_customer)
@@ -169,4 +182,5 @@ Partial Class frm_mainmenu_a187806
     Friend WithEvents pic_github As PictureBox
     Friend WithEvents lnk_github As LinkLabel
     Friend WithEvents pnl_githublink As Panel
+    Friend WithEvents lbl_catchPhrase As Label
 End Class
