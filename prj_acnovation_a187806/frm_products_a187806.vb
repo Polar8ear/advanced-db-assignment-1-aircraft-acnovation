@@ -52,6 +52,11 @@ Public Class frm_products_a187806
         Dim productData = productDatatable.Rows(0)
 
         For Each textBoxField As TextBoxField In textBoxFields
+            If textBoxField.textBox Is txt_price Then
+                textBoxField.textBox.Text = $"{productData.Item(textBoxField.field):f}"
+                Continue For
+            End If
+
             textBoxField.textBox.Text = productData.Item(textBoxField.field)
         Next
 
