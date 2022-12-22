@@ -204,7 +204,7 @@ Public Class frm_products_a187806
         End If
     End Sub
 
-    Private Sub btn_clear_Click(sender As Object, e As EventArgs) Handles btn_new.Click
+    Private Sub btn_new_Click(sender As Object, e As EventArgs) Handles btn_new.Click
         Dim newId = getNewId()
         For Each textBoxField As TextBoxField In textBoxFields
             textBoxField.textBox.Clear()
