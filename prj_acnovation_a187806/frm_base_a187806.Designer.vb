@@ -45,7 +45,7 @@ Partial Class frm_base_a187806
         Me.Controls.Add(Me.pic_home)
         Me.Name = "frm_base_a187806"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "frm_base_a187806"
+        Me.Text = "Acnovation"
         CType(Me.pic_home, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
