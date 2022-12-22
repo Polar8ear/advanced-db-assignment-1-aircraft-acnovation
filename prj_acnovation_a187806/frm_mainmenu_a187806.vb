@@ -45,4 +45,8 @@ Public Class frm_mainmenu_a187806
             MessageBox.Show("Unable to open link that was clicked.")
         End Try
     End Sub
+
+    Private Sub frm_mainmenu_a187806_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Icon = My.Resources.icon
+    End Sub
 End Class
