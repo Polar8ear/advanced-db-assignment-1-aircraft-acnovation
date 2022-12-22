@@ -101,7 +101,11 @@ Public Class frm_products_a187806
 
     Private Sub clearImage()
         If currentImage IsNot Nothing Then currentImage.Dispose()
+        currentImage = Nothing
         pic_product.Image = My.Resources.noimage
+        btn_save.Enabled = True
+    End Sub
+
     End Sub
 
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
@@ -148,16 +152,18 @@ Public Class frm_products_a187806
             ")
         End If
 
+        Dim isNewImageTextExists = newImageText IsNot Nothing And newImageText?.Length > 0
 
-        If newImageText IsNot Nothing And newImageText?.Length > 0 Then
-            Dim filePath = $"./images/{txt_id.Text}.jpg"
+        Dim filePath = $"./images/{txt_id.Text}.jpg"
+        If isNewImageTextExists Or currentImage Is Nothing Then
             If My.Computer.FileSystem.FileExists(filePath) Then
                 My.Computer.FileSystem.DeleteFile(filePath)
             End If
-
-            My.Computer.FileSystem.CopyFile(newImageText, filePath)
         End If
 
+        If isNewImageTextExists Then
+            My.Computer.FileSystem.CopyFile(newImageText, filePath)
+        End If
         btn_save.Enabled = False
     End Sub
 
