@@ -3,7 +3,7 @@
         Icon = My.Resources.icon
     End Sub
 
-    Private Sub frm_base_a187806_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+    Overridable Sub frm_base_a187806_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         End
     End Sub
 
