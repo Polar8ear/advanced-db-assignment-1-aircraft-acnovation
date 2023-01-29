@@ -2,26 +2,44 @@
     Dim frm_ordersList_a187806 As frm_tableView_a187806
     Dim orderDetailsDatatable As DataTable
     Private Sub frm_orders_a187806_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        lst_orders.DisplayMember = "FLD_ORDER_ID"
-        AddHandler lst_orders.SelectedIndexChanged, AddressOf lst_orders_SelectedIndexChanged
         refreshIds()
         refreshStaffs()
         refreshCustomers()
-        refreshData()
-        btn_save.Enabled = False
-    End Sub
 
-    'Private Sub btn_table_Click(sender As Object, e As EventArgs) Handles btn_table.Click
-    '    If frm_ordersList_a187806 Is Nothing Then
-    '        frm_ordersList_a187806 = New frm_tableView_a187806("orders",
-    '            "SELECT  
-    '                FLD_STAFF_ID AS [ID],  
-    '                FLD_NAME AS [Name]  
-    '            FROM TBL_orders_A187806")
-    '    End If
-    '    frm_ordersList_a187806.Show()
-    '    Hide()
-    'End Sub
+        btn_save.Enabled = False
+        btn_addProductItem.Enabled = False
+        btn_removeProductItem.Enabled = False
+
+        orderDetailsDatatable = New DataTable()
+
+        orderDetailsDatatable.Columns.AddRange({
+            New DataColumn("FLD_PRODUCT_ID", GetType(Integer)),
+            New DataColumn("FLD_QUANTITY", GetType(Integer)),
+            New DataColumn("FLD_PRODUCT_NAME"),
+            New DataColumn("FLD_PRICE", GetType(Double))
+        })
+
+        Dim subtotalColumn = New DataColumn("FLD_SUBTOTAL", System.Type.GetType("System.Decimal"))
+        subtotalColumn.Expression = "FLD_QUANTITY * FLD_PRICE"
+
+        orderDetailsDatatable.Columns.Add(subtotalColumn)
+
+        grd_orders.DataSource = orderDetailsDatatable
+
+        With grd_orders
+            .Columns(0).HeaderText = "ID"
+            .Columns(1).HeaderText = "Quantity"
+            .Columns(2).HeaderText = "Name"
+            .Columns(3).HeaderText = "Price (RM)"
+            .Columns(3).DefaultCellStyle.Format = "0.00##"
+            .Columns(4).HeaderText = "Subtotal (RM)"
+            .Columns(4).DefaultCellStyle.Format = "0.00##"
+            .AutoResizeColumns()
+        End With
+
+        AddHandler lst_orders.SelectedIndexChanged, AddressOf lst_orders_SelectedIndexChanged
+        lst_orders.DisplayMember = "FLD_ORDER_ID"
+    End Sub
 
     Private Function getNewId()
         Dim lastIdDataTable = GetDataTableFromSelectStatment("SELECT MAX(FLD_ORDER_ID) AS MAX_FLD_ID FROM TBL_ORDERS_A187806")
@@ -41,7 +59,9 @@
         btn_addProductItem.Enabled = True
 
         orderDetailsDatatable.Clear()
+        refreshTotal()
 
+        btn_save.Enabled = True
     End Sub
 
     Private Sub refreshIds()
@@ -72,14 +92,14 @@
         txt_total.Text = total.ToString("F")
     End Sub
 
-    Private Sub refreshData()
+    Private Sub refreshData(orderId As Integer)
         Dim orderData = GetDataTableFromSelectStatment($"
             SELECT
                 FLD_ORDER_ID,
                 FLD_PROCESSED_BY_STAFF_ID,
                 FLD_ORDERED_BY_CUSTOMER_ID
             From TBL_ORDERS_A187806
-            WHERE FLD_ORDER_ID = {txt_id.Text}
+            WHERE FLD_ORDER_ID = {orderId}
         ").Rows(0)
 
         For Each staffRow As DataRowView In cmb_staff.Items
@@ -105,7 +125,7 @@
             FROM TBL_PRODUCTS_A187806 AS P 
             INNER JOIN TBL_ORDER_DETAILS_A187806 AS O 
             ON P.FLD_PRODUCT_ID = O.FLD_PRODUCT_ID
-            WHERE O.FLD_ORDER_ID= {txt_id.Text};
+            WHERE O.FLD_ORDER_ID= {orderId};
         ")
 
         Dim subtotalColumn = New DataColumn("FLD_SUBTOTAL", System.Type.GetType("System.Decimal"))
@@ -130,8 +150,14 @@
     End Sub
 
     Private Sub lst_orders_SelectedIndexChanged(sender As Object, e As EventArgs)
-        txt_id.Text = lst_orders.SelectedItem.Item("FLD_ORDER_ID")
-        refreshData()
+        Dim orderId = lst_orders.SelectedItem.Item("FLD_ORDER_ID")
+
+        If orderId Is Nothing Then
+            Return
+        End If
+
+        txt_id.Text = orderId
+        refreshData(orderId)
 
         btn_save.Enabled = False
         btn_addProductItem.Enabled = False
@@ -143,56 +169,158 @@
     End Sub
 
     Private Sub btn_removeProductItem_Click(sender As Object, e As EventArgs) Handles btn_removeProductItem.Click
-
+        For Each cell As DataGridViewCell In grd_orders.SelectedCells
+            orderDetailsDatatable.Rows(cell.RowIndex).Delete()
+        Next
     End Sub
 
     Public Sub addProductLineItem(productId As String, quantity As Integer)
+
+        Dim productDatatable = GetDataTableFromSelectStatment($"
+            SELECT
+                FLD_PRODUCT_NAME,
+                FLD_PRICE,
+                FLD_STOCK
+            FROM TBL_PRODUCTS_A187806
+            WHERE FLD_PRODUCT_ID={productId};
+        ")
+        Dim productData = productDatatable.Rows(0)
+
+        If productData Is Nothing Then
+            Beep()
+            MessageBox.Show("The product id is invalid")
+            Return
+        End If
+
+        For Each row As DataRow In orderDetailsDatatable.Rows
+            If row.Field(Of Integer)("FLD_PRODUCT_ID") = productId Then
+                Dim previousQuantity = row.Field(Of Integer)("FLD_QUANTITY")
+                row.Item("FLD_QUANTITY") = Math.Min((previousQuantity + quantity), productData.Field(Of Integer)("FLD_STOCK"))
+                Return
+            End If
+        Next
+
+        Dim newRow = orderDetailsDatatable.NewRow()
+        newRow.SetField(0, productId)
+        newRow.SetField(1, quantity)
+        newRow.SetField(2, productData.ItemArray(0))
+        newRow.SetField(3, productData.ItemArray(1))
+
+        orderDetailsDatatable.Rows.Add(newRow)
+
+        refreshTotal()
     End Sub
 
 
+    Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
+        If txt_id.Text <> getNewId() Then
+            Beep()
+            MessageBox.Show("Current version of Acnovation App does not support updating order")
+            Return
+        End If
 
-    'Private Sub btn_delete_Click(sender As Object, e As EventArgs) Handles btn_delete.Click
-    '    Dim delete_confirmation = MsgBox($"Are you sure you want to delete staff of ID {txt_id.Text}",
-    '                                     MsgBoxStyle.YesNo)
+        Dim dbConnection = GetDbConnection()
+        dbConnection.Open()
+        Dim transaction = dbConnection.BeginTransaction
+        Try
+            Dim writer As New OleDb.OleDbCommand With {
+                .Connection = dbConnection,
+                .Transaction = transaction
+            }
 
-    '    If delete_confirmation = MsgBoxResult.Yes Then
-    '        Beep()
+            If cmb_staff.SelectedItem Is Nothing Then
+                Beep()
+                MessageBox.Show("Please select a staff")
+                Return
+            End If
 
-    '        Dim state = ExecuteSqlStatement($"DELETE FROM TBL_orders_A187806 WHERE FLD_STAFF_ID = {txt_id.Text}")
+            If cmb_customer.SelectedItem Is Nothing Then
+                Beep()
+                MessageBox.Show("Please select a customer")
+                Return
+            End If
 
-    '        If state.success Then
-    '            MsgBox($"The staff of ID {txt_id.Text} has been successfully deleted.")
-    '            refreshIds()
-    '        Else
-    '            MsgBox($"Delete failed. {vbCrLf}{vbCrLf}{state.exception.Message}")
-    '        End If
-    '    End If
-    'End Sub
+            Dim orderId = txt_id.Text
+            Dim staffId = cmb_staff.SelectedItem.Item("FLD_STAFF_ID")
+            Dim customerId = cmb_customer.SelectedItem.Item("FLD_CUSTOMER_ID")
 
-    'Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
-    '    Dim state As SuccessState
+            Dim insertOrderStatement = $"INSERT INTO TBL_ORDERS_A187806 (
+                FLD_ORDER_ID, 
+                FLD_PROCESSED_BY_STAFF_ID, 
+                FLD_ORDERED_BY_CUSTOMER_ID 
+            ) VALUES (
+                {txt_id.Text},
+                {staffId},
+                {customerId}
+            )"
 
-    '    If txt_id.Text = getNewId() Then
-    '        state = ExecuteSqlStatement($"INSERT INTO TBL_orders_A187806 (
-    '            FLD_STAFF_ID,
-    '            FLD_NAME
-    '        ) VALUES (
-    '            {txt_id.Text},
-    '            '{txt_name.Text}'
-    '        )")
-    '        refreshIds()
-    '    Else
-    '        state = ExecuteSqlStatement($"UPDATE TBL_orders_A187806 SET
-    '            FLD_NAME = '{txt_name.Text}',
-    '        WHERE FLD_STAFF_ID = {txt_id.Text}
-    '        ")
-    '    End If
+            writer.CommandText = $"INSERT INTO TBL_ORDERS_A187806 (
+                FLD_ORDER_ID, 
+                FLD_PROCESSED_BY_STAFF_ID, 
+                FLD_ORDERED_BY_CUSTOMER_ID 
+            ) VALUES (
+                {txt_id.Text},
+                {staffId},
+                {customerId}
+            )"
+            writer.ExecuteNonQuery()
 
-    '    If state.success Then
-    '        Beep()
-    '        MsgBox("Succesffully saved.")
-    '    Else
-    '        MsgBox($"Error Occured:{vbCrLf}{vbCrLf}{state.exception.Message}")
-    '    End If
-    'End Sub
+
+            For Each row As DataRow In orderDetailsDatatable.Rows
+                Dim productId = row.ItemArray(0)
+                Dim quantity = row.ItemArray(1)
+
+                writer.CommandText = $"INSERT INTO TBL_ORDER_DETAILS_A187806 (
+                    FLD_ORDER_ID,
+                    FLD_PRODUCT_ID,
+                    FLD_QUANTITY
+                ) VALUES (
+                    {orderId},
+                    {productId},
+                    {quantity}
+                )"
+                writer.ExecuteNonQuery()
+
+                Dim productDatatable = GetDataTableFromSelectStatment($"
+                    SELECT
+                        FLD_PRODUCT_NAME,
+                        FLD_PRICE,
+                        FLD_STOCK
+                    FROM TBL_PRODUCTS_A187806
+                    WHERE FLD_PRODUCT_ID={productId};
+                ")
+                Dim productData = productDatatable.Rows(0)
+
+                Dim newStock = productData.Field(Of Integer)("FLD_STOCK") - quantity
+
+                If newStock < 0 Then
+                    newStock = 0
+                End If
+
+                writer.CommandText = $"UPDATE TBL_PRODUCTS_A187806
+                    SET FLD_STOCK = {newStock}
+                WHERE FLD_PRODUCT_ID = {orderId}
+                "
+                writer.ExecuteNonQuery()
+            Next
+
+            transaction.Commit()
+        Catch ex As InvalidOperationException
+            Beep()
+            MessageBox.Show($"An error occured {vbCrLf} {vbCrLf} {ex.Message}")
+            transaction.Rollback()
+        Finally
+            dbConnection.Close()
+
+        End Try
+
+        refreshIds()
+    End Sub
+
+    Private Sub grd_orders_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles grd_orders.CellClick
+        If txt_id.Text = getNewId() Then
+            btn_removeProductItem.Enabled = True
+        End If
+        refreshTotal()
+    End Sub
 End Class

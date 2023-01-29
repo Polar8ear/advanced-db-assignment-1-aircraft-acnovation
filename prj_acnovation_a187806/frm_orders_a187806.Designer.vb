@@ -21,9 +21,7 @@ Partial Class frm_orders_a187806
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_orders_a187806))
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.btn_table = New System.Windows.Forms.Button()
         Me.btn_new = New System.Windows.Forms.Button()
-        Me.btn_delete = New System.Windows.Forms.Button()
         Me.btn_save = New System.Windows.Forms.Button()
         Me.lst_orders = New System.Windows.Forms.ListBox()
         Me.txt_id = New System.Windows.Forms.TextBox()
@@ -48,10 +46,8 @@ Partial Class frm_orders_a187806
         Me.TableLayoutPanel1.ColumnCount = 2
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.btn_table, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.btn_new, 1, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.btn_delete, 0, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.btn_save, 1, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.btn_new, 0, 1)
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(590, 318)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
@@ -63,35 +59,15 @@ Partial Class frm_orders_a187806
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(200, 100)
         Me.TableLayoutPanel1.TabIndex = 8
         '
-        'btn_table
-        '
-        Me.btn_table.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.btn_table.Location = New System.Drawing.Point(3, 4)
-        Me.btn_table.Name = "btn_table"
-        Me.btn_table.Size = New System.Drawing.Size(94, 41)
-        Me.btn_table.TabIndex = 0
-        Me.btn_table.Text = "Table"
-        Me.btn_table.UseVisualStyleBackColor = True
-        '
         'btn_new
         '
         Me.btn_new.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.btn_new.Location = New System.Drawing.Point(103, 4)
+        Me.btn_new.Location = New System.Drawing.Point(3, 54)
         Me.btn_new.Name = "btn_new"
         Me.btn_new.Size = New System.Drawing.Size(94, 41)
         Me.btn_new.TabIndex = 1
         Me.btn_new.Text = "New"
         Me.btn_new.UseVisualStyleBackColor = True
-        '
-        'btn_delete
-        '
-        Me.btn_delete.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.btn_delete.Location = New System.Drawing.Point(3, 54)
-        Me.btn_delete.Name = "btn_delete"
-        Me.btn_delete.Size = New System.Drawing.Size(94, 41)
-        Me.btn_delete.TabIndex = 2
-        Me.btn_delete.Text = "Delete"
-        Me.btn_delete.UseVisualStyleBackColor = True
         '
         'btn_save
         '
@@ -177,7 +153,7 @@ Partial Class frm_orders_a187806
         'btn_addProductItem
         '
         Me.btn_addProductItem.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.btn_addProductItem.Location = New System.Drawing.Point(381, 373)
+        Me.btn_addProductItem.Location = New System.Drawing.Point(397, 371)
         Me.btn_addProductItem.Name = "btn_addProductItem"
         Me.btn_addProductItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.btn_addProductItem.Size = New System.Drawing.Size(78, 32)
@@ -188,7 +164,7 @@ Partial Class frm_orders_a187806
         'btn_removeProductItem
         '
         Me.btn_removeProductItem.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.btn_removeProductItem.Location = New System.Drawing.Point(473, 373)
+        Me.btn_removeProductItem.Location = New System.Drawing.Point(490, 371)
         Me.btn_removeProductItem.Name = "btn_removeProductItem"
         Me.btn_removeProductItem.Size = New System.Drawing.Size(78, 32)
         Me.btn_removeProductItem.TabIndex = 19
@@ -286,9 +262,7 @@ Partial Class frm_orders_a187806
     End Sub
 
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Friend WithEvents btn_table As Button
     Friend WithEvents btn_new As Button
-    Friend WithEvents btn_delete As Button
     Friend WithEvents btn_save As Button
     Friend WithEvents lst_orders As ListBox
     Friend WithEvents txt_id As TextBox

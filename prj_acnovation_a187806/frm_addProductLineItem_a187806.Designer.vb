@@ -191,7 +191,7 @@ Partial Class frm_addProductLineItem_a187806
         '
         Me.lbl_title.AutoSize = True
         Me.lbl_title.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_title.Location = New System.Drawing.Point(81, 27)
+        Me.lbl_title.Location = New System.Drawing.Point(29, 32)
         Me.lbl_title.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbl_title.Name = "lbl_title"
         Me.lbl_title.Size = New System.Drawing.Size(89, 22)

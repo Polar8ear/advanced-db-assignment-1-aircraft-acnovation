@@ -49,9 +49,11 @@
             textBoxField.textBox.Text = productData.Item(textBoxField.field)
         Next
 
-        changeImage($"./images/{productData.Item("FLD_PRODUCT_ID")}.jpg")
+        changeImage($"{Application.StartupPath}/images/{productData.Item("FLD_PRODUCT_ID")}.jpg")
 
-        num_quantity.Maximum = productData.Item("FLD_STOCK")
+        Dim stock = productData.Item("FLD_STOCK")
+        num_quantity.Minimum = IIf(stock > 0, 1, 0)
+        num_quantity.Maximum = stock
     End Sub
 
     Private Sub refreshIds()
@@ -82,7 +84,7 @@
 
     Private Sub clear()
         lst_productIds.SelectedIndex = 0
-        num_quantity.ResetText()
+        num_quantity.Value = num_quantity.Minimum
     End Sub
 
     Overrides Sub frm_base_a187806_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
