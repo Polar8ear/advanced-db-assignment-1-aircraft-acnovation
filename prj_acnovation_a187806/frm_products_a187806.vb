@@ -60,7 +60,7 @@ Public Class frm_products_a187806
             textBoxField.textBox.Text = productData.Item(textBoxField.field)
         Next
 
-        changeImage($"./images/{productData.Item("FLD_PRODUCT_ID")}.jpg")
+        changeImage($"{Application.StartupPath}/images/{productData.Item("FLD_PRODUCT_ID")}.jpg")
 
         btn_save.Enabled = False
         newImageText = Nothing
@@ -176,7 +176,6 @@ Public Class frm_products_a187806
                 )
             ")
 
-            If state.success Then refreshIds()
         Else
             state = ExecuteSqlStatement($"UPDATE TBL_PRODUCTS_A187806 SET
                     FLD_PRODUCT_NAME = '{txt_name.Text}', 
@@ -189,17 +188,11 @@ Public Class frm_products_a187806
             ")
         End If
 
-        If state.success Then
-            Beep()
-            MsgBox("Succesfully saved.")
-        Else
-            MsgBox($"Saving failed due to: {vbCrLf}{vbCrLf}{state.exception.Message}")
-            Exit Sub
-        End If
+
 
         Dim isNewImageTextExists = newImageText IsNot Nothing And newImageText?.Length > 0
 
-        Dim filePath = $"./images/{txt_id.Text}.jpg"
+        Dim filePath = $"{Application.StartupPath}/images/{txt_id.Text}.jpg"
         If isNewImageTextExists Or currentImage Is Nothing Then
             If My.Computer.FileSystem.FileExists(filePath) Then
                 My.Computer.FileSystem.DeleteFile(filePath)
@@ -210,6 +203,16 @@ Public Class frm_products_a187806
             My.Computer.FileSystem.CopyFile(newImageText, filePath)
         End If
         btn_save.Enabled = False
+
+        If state.success Then
+            refreshIds()
+            Beep()
+            MsgBox("Succesfully saved.")
+        Else
+            MsgBox($"Saving failed due to: {vbCrLf}{vbCrLf}{state.exception.Message}")
+            Exit Sub
+        End If
+
     End Sub
 
     Private Sub btn_delete_Click(sender As Object, e As EventArgs) Handles btn_delete.Click
@@ -235,7 +238,7 @@ Public Class frm_products_a187806
             MsgBox($"The product of ID {txt_id.Text} has been successfully deleted.")
             clearImage()
 
-            Dim filePath = $"./images/{txt_id.Text}.jpg"
+            Dim filePath = $"{Application.StartupPath}/images/{txt_id.Text}.jpg"
             If My.Computer.FileSystem.FileExists(filePath) Then
                 My.Computer.FileSystem.DeleteFile(filePath)
             End If
