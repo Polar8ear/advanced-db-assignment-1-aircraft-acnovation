@@ -9,6 +9,6 @@
 
     Private Sub pic_home_Click(sender As Object, e As EventArgs) Handles pic_home.Click
         frm_mainmenu_a187806.Show()
-        Hide()
+        Dispose()
     End Sub
 End Class
